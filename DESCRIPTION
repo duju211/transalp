@@ -16,5 +16,8 @@ Imports:
     magrittr,
     sf,
     ggmap,
-    tidyselect
-RoxygenNote: 7.1.0
+    tidyselect,
+    ggridges,
+    patchwork,
+    scales
+RoxygenNote: 7.1.1

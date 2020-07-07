@@ -2,7 +2,10 @@
 
 export("%>%")
 export(convert_to_sf)
+export(extract_meas)
 export(get_alpen_map)
+export(pre_process_meas)
 export(vis_altitude)
+export(vis_altitude_ridge)
 export(vis_ride)
 importFrom(magrittr,"%>%")

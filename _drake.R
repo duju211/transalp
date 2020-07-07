@@ -1,11 +1,10 @@
+library(patchwork)
 library(tidyverse)
 library(lubridate)
 library(drake)
 library(rava)
 
 devtools::load_all()
-expose_imports(transalp)
-expose_imports(rava)
 
 extrafont::font_import()
 extrafont::loadfonts(device = "win")
@@ -34,15 +33,21 @@ trans_alp_plan <- drake_plan(
       stream = purrr::map(id, ~ read_activity_stream(.x, my_sig))),
   df_act_stream = tidy_streams(df_act_stream_raw),
   df_act_meas = extract_meas(df_act_stream),
-  sf_act_meas = convert_to_sf(df_act_meas),
-  gg_altitude = vis_altitude(df_act_meas),
+  df_act_meas_pro = pre_process_meas(df_act_meas),
+  sf_act_meas = convert_to_sf(df_act_meas_pro),
+  gg_altitude = vis_altitude(df_act_meas_pro),
+  gg_altitude_ridges = vis_altitude_ridge(sf_act_meas),
   gg_alpen = get_alpen_map(
     sf_act_meas, tol_bbox = tolerance_bbox, map_zoom = zoom_map),
   gg_rides = vis_ride(sf_act_meas, gg_alpen),
   out_gg_altitude = ggsave(
-    file_out("altitude.png"),
-    plot = gg_altitude +
-      theme(text = element_text(family = "Fira Code Retina")))
+    file_out("trans_alp_2020.png"),
+    plot = (gg_rides + gg_altitude_ridges) +
+      plot_annotation(
+        title = "Transalp 2020",
+        subtitle = "Albstadt - Lugano") &
+      theme(text = element_text(family = "Fira Code Retina")),
+    width = 10, height = 7)
 )
 
-drake_config(trans_alp_plan)
+drake_config(trans_alp_plan, envir = getNamespace('transalp'))

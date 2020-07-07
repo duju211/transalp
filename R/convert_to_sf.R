@@ -8,7 +8,7 @@
 #' @examples
 convert_to_sf <- function(df_act_meas) {
   df_act_meas %>%
-    tidyr::nest(act_data = -c(id, act_date)) %>%
+    tidyr::nest(act_data = -c(id, act_date_chr)) %>%
     dplyr::mutate(
       line = purrr::map(
         act_data,
