@@ -1,10 +1,12 @@
 library(patchwork)
 library(tidyverse)
 library(lubridate)
+library(devtools)
+library(usethis)
 library(drake)
 library(rava)
 
-devtools::load_all()
+load_all()
 
 extrafont::font_import()
 extrafont::loadfonts(device = "win")
@@ -33,6 +35,7 @@ trans_alp_plan <- drake_plan(
       stream = purrr::map(id, ~ read_activity_stream(.x, my_sig))),
   df_act_stream = tidy_streams(df_act_stream_raw),
   df_act_meas = extract_meas(df_act_stream),
+  include_data = use_data(df_act_meas),
   df_act_meas_pro = pre_process_meas(df_act_meas),
   sf_act_meas = convert_to_sf(df_act_meas_pro),
   gg_altitude = vis_altitude(df_act_meas_pro),
