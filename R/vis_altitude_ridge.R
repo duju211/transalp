@@ -16,7 +16,7 @@ vis_altitude_ridge <- function(df_act_meas) {
       group = act_date_chr, color = act_date_chr)) +
     ggridges::geom_ridgeline(scale = 0.0025, alpha = 0.2) +
     ggplot2::labs(
-      x = "Distanz [km]", y = ggplot2::element_blank()) +
+      x = "Distance [km]", y = ggplot2::element_blank()) +
     ggplot2::theme_light() +
     ggplot2::theme(
       legend.position = "none") +
