@@ -2,7 +2,7 @@
 % Please edit documentation in R/pre_process_meas.R
 \name{pre_process_meas}
 \alias{pre_process_meas}
-\title{Title}
+\title{Function to preprocess measurements of the included activities.}
 \usage{
 pre_process_meas(df_act_meas)
 }
@@ -10,8 +10,11 @@ pre_process_meas(df_act_meas)
 \item{df_act_meas}{}
 }
 \value{
-
+Preprocessed activities
 }
 \description{
-Title
+Function to preprocess measurements of the included activities.
+}
+\examples{
+pre_process_meas(df_act_meas)
 }

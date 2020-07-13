@@ -1,11 +1,12 @@
-#' Title
+#' Function to preprocess measurements of the included activities.
 #'
 #' @param df_act_meas
 #'
-#' @return
+#' @return Preprocessed activities
 #' @export
 #'
 #' @examples
+#' pre_process_meas(df_act_meas)
 pre_process_meas <- function(df_act_meas) {
   df_act_meas %>%
     dplyr::mutate(
