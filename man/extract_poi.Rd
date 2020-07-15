@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract_poi.R
 \name{extract_poi}
 \alias{extract_poi}
-\title{Extract points of interest}
+\title{Extract points of interest.}
 \usage{
 extract_poi(sf_act_meas)
 }
@@ -10,8 +10,8 @@ extract_poi(sf_act_meas)
 \item{sf_act_meas}{}
 }
 \value{
-
+Data frame with points of interest
 }
 \description{
-Extract points of interest
+Extract points of interest.
 }

@@ -1,8 +1,8 @@
-#' Title
+#' Visualise the altitude by using a ridge plot.
 #'
 #' @param df_act_meas
 #'
-#' @return
+#' @return ggplot of altitude data
 #' @export
 #'
 #' @examples

@@ -1,8 +1,9 @@
-#' Title
+#' Turn every activity into an sf object. Nest the data frame by 'id' and
+#' 'act_date_chr' to do this.
 #'
 #' @param df_act_meas
 #'
-#' @return
+#' @return sf object
 #' @export
 #'
 #' @examples

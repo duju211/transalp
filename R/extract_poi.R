@@ -1,8 +1,8 @@
-#' Extract points of interest
+#' Extract points of interest.
 #'
 #' @param sf_act_meas
 #'
-#' @return
+#' @return Data frame with points of interest
 #' @export
 #'
 #' @examples

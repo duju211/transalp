@@ -1,4 +1,4 @@
-#' Title
+#' Get the ground map for the visualisation of the spatial data.
 #'
 #' @param sf_act_meas
 #' @param tol_bbox

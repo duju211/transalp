@@ -2,7 +2,8 @@
 % Please edit documentation in R/convert_to_sf.R
 \name{convert_to_sf}
 \alias{convert_to_sf}
-\title{Title}
+\title{Turn every activity into an sf object. Nest the data frame by 'id' and
+'act_date_chr' to do this.}
 \usage{
 convert_to_sf(df_act_meas)
 }
@@ -10,8 +11,9 @@ convert_to_sf(df_act_meas)
 \item{df_act_meas}{}
 }
 \value{
-
+sf object
 }
 \description{
-Title
+Turn every activity into an sf object. Nest the data frame by 'id' and
+'act_date_chr' to do this.
 }

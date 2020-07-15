@@ -2,16 +2,16 @@
 % Please edit documentation in R/vis_ride.R
 \name{vis_ride}
 \alias{vis_ride}
-\title{Title}
+\title{Plot the spatial data (route + point of interest) onto the map}
 \usage{
-vis_ride(sf_act_meas, gg_alpen)
+vis_ride(sf_act_meas, gg_alpen, df_poi)
 }
 \arguments{
 \item{gg_alpen}{}
 }
 \value{
-
+ggplot of spatial data
 }
 \description{
-Title
+Plot the spatial data (route + point of interest) onto the map
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_alpen_map.R
 \name{get_alpen_map}
 \alias{get_alpen_map}
-\title{Title}
+\title{Get the ground map for the visualisation of the spatial data.}
 \usage{
 get_alpen_map(sf_act_meas, tol_bbox = 0.015, map_zoom = 10)
 }
@@ -13,5 +13,5 @@ get_alpen_map(sf_act_meas, tol_bbox = 0.015, map_zoom = 10)
 
 }
 \description{
-Title
+Get the ground map for the visualisation of the spatial data.
 }

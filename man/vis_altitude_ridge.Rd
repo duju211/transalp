@@ -2,7 +2,7 @@
 % Please edit documentation in R/vis_altitude_ridge.R
 \name{vis_altitude_ridge}
 \alias{vis_altitude_ridge}
-\title{Title}
+\title{Visualise the altitude by using a ridge plot.}
 \usage{
 vis_altitude_ridge(df_act_meas)
 }
@@ -10,8 +10,8 @@ vis_altitude_ridge(df_act_meas)
 \item{df_act_meas}{}
 }
 \value{
-
+ggplot of altitude data
 }
 \description{
-Title
+Visualise the altitude by using a ridge plot.
 }
