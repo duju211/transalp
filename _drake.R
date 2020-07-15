@@ -17,7 +17,7 @@ trans_alp_plan <- drake_plan(
   tour_start_date = ymd("2020-06-21"),
   tour_end_date = ymd("2020-06-26"),
   tolerance_bbox = 0.1,
-  zoom_map = 11,
+  zoom_map = 9,
 
   my_app = define_strava_app(),
   my_endpoint = define_strava_endpoint(),
