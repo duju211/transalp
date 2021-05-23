@@ -4,9 +4,9 @@ description: |
   Visualising my Transalp bike ride
 author:
   - name: Julian During
-    url: www.datannery.com
 date: "`r Sys.Date()`"
 output: distill::distill_article
+repository_url: https://github.com/duju211/transalp
 ---
 
 This summer I crossed the alps with my road bike. I've recorded the whole ride
