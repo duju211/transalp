@@ -1,0 +1,183 @@
+---
+title: "Getting Over It"
+description: |
+  Visualising my Transalp bike ride
+author:
+  - name: Julian During
+    url: www.datannery.com
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+This summer I crossed the alps with my road bike. I've recorded the whole ride
+and as a nice memory, I would like to visualise this ride. 
+
+A short time ago I've discovered the awesome R package `drake`.
+The use of this package
+transformed the way I do my analysis and it helps me to make my post more 
+reproducible. The following
+[blog post](https://milesmcbain.xyz/the-drake-post/)
+describes the underlying workflow, after which I've developed the
+underlying package `transalp` for this post.
+
+# Data
+
+At first you have to install the package from github. Then you have to load it. 
+
+```{r eval=FALSE}
+remotes::install_github("duju211/transalp")
+
+library(transalp)
+```
+
+Load the other necessary libraries:
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(patchwork)
+library(drake)
+library(here)
+library(fs)
+```
+
+```{r include=FALSE}
+fct_files <- dir_ls("R")
+
+fct_names <- path_file(fct_files) %>% 
+  path_ext_remove()
+
+walk2(fct_files, fct_names, ~ knitr::read_chunk(.x, labels = .y))
+
+loadd(gg_altitude_ridges)
+loadd(sf_act_meas)
+loadd(gg_alpen)
+loadd(gg_rides)
+```
+
+The package includes the underlying data:
+
+```{r}
+df_act_meas_raw <- transalp::df_act_meas
+```
+
+```{r, echo=FALSE}
+df_act_meas_raw
+```
+
+# Preprocessing
+
+Look at the first function:
+
+```{r pre_process_meas}
+```
+
+The function does some basic preprocessing on the included activities:
+
+* Turn activity date into character (for easier plotting)
+* Normalize altitude and distance
+
+```{r eval=FALSE}
+df_act_meas <- pre_process_meas(df_act_meas_raw)
+```
+
+Nest the data frame by `id` and `act_date_chr`. Create a new `sf` column with
+the geospatial information of the activities:
+
+```{r convert_to_sf}
+```
+
+```{r, eval=FALSE}
+sf_act_meas <- convert_to_sf(df_act_meas)
+```
+
+```{r, echo=FALSE}
+sf_act_meas
+```
+
+
+Extract the start point of every tour except for the last one. Extract the end
+point for this tour.
+
+```{r extract_poi}
+```
+
+```{r, eval=FALSE}
+df_poi <- extract_poi(sf_act_meas)
+```
+
+# Visualisation
+
+## Altitude
+
+Visualise the altitude data:
+
+```{r vis_altitude_ridge}
+```
+
+The function mainly applies the `ggridges::geom_ridgeline` function to the data.
+A form of visualisation that I've already used a lot. Its style is 
+reminiscent of the famous Joy Division album cover.
+
+```{r, eval=FALSE}
+gg_altitude_ridges <- vis_altitude_ridge(sf_act_meas)
+```
+
+```{r, echo=FALSE}
+gg_altitude_ridges
+```
+
+
+## Spatial Data
+
+Determine the map data for all the activities. Use the `ggmap::get_stamenmap`
+function to download the data. The bounding box is calculated from the
+`sf_act_meas` object.
+
+```{r get_alpen_map}
+```
+
+```{r eval=FALSE}
+gg_alpen <- get_alpen_map(sf_act_meas, tol_bbox = 0.1, map_zoom = 9)
+```
+
+```{r, echo=FALSE}
+ggmap::ggmap(gg_alpen)
+```
+
+
+Plot the activity and the point of interest data onto the map. Use the 
+`ggrepel` package to plot the labels of the points of interest. This avoids
+too much overplotting.
+
+```{r vis_ride}
+```
+
+```{r eval=FALSE}
+gg_rides <- vis_ride(sf_act_meas, gg_alpen_map, df_poi)
+```
+
+```{r, echo=FALSE}
+gg_rides
+```
+
+## Combine Visualisations
+
+Combine everything into one big plot using the `patchwork` package:
+
+```{r transalp_plot_final, message=FALSE}
+# extrafont::font_import()
+extrafont::loadfonts(device = "win")
+
+final_plot <- (gg_rides + gg_altitude_ridges) +
+      plot_annotation(
+        title = "Transalp 2020",
+        subtitle = "Albstadt - Lugano") &
+      theme(text = element_text(family = "Fira Code Retina"))
+
+final_plot
+```
+
+The `extrafont` package helps with using some fancy fonts. The `font_import`
+function has to be called once.
+Comment the function call in the above code chunk because of this.
+

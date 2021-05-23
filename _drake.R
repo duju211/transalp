@@ -51,7 +51,13 @@ trans_alp_plan <- drake_plan(
         title = "Transalp 2020",
         subtitle = "Albstadt - Lugano") &
       theme(text = element_text(family = "Fira Code Retina")),
-    width = 10, height = 7)
+    width = 10, height = 7),
+
+  transalp_report = target(
+    command = {
+      rmarkdown::render(knitr_in("trans_alp_2020.Rmd"))
+      file_out("trans_alp_2020.Rmd.html")
+    })
 )
 
 drake_config(trans_alp_plan, envir = getNamespace('transalp'))
