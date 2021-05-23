@@ -164,7 +164,7 @@ gg_rides
 
 Combine everything into one big plot using the `patchwork` package:
 
-```{r transalp_plot_final, message=FALSE}
+```{r transalp_plot_final, message=FALSE, preview=TRUE}
 # extrafont::font_import()
 extrafont::loadfonts(device = "win")
 
