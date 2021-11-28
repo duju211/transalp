@@ -10,6 +10,10 @@ extract_poi <- function(df_act_meas_pro) {
     61606, "Nufenen Pass", "mountain",
     69335, "Gotthard Pass", "mountain",
     43888, "Goescheneralp", "mountain",
-    74266, "Gotthard Pass", "mountain") |>
+    74266, "Gotthard Pass", "mountain",
+    27223, "Aegerisee", "mountain",
+    47338, "Andermatt", "mountain",
+    88225, "Monte Ceneri", "mountain",
+    1640, "Messstetten", "mountain") |>
     left_join(df_act_meas_pro, by = "row_nr")
 }

@@ -11,6 +11,6 @@ vis_altitude <- function(df_meas, df_poi) {
     geom_area(aes(fill = act_date_chr), position = "identity", alpha = 0.1) +
     labs(x = "Distance [km]", y = "Height [m]") +
     scale_y_continuous(
-      position = "right", expand = expansion(mult = c(0, .1))) +
+      position = "right", expand = expansion(mult = c(0, .05))) +
     scale_x_continuous(breaks = breaks_width(10))
 }
