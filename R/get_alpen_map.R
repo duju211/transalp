@@ -1,4 +1,4 @@
-get_alpen_map <- function(sf_act_meas, tol_bbox = 0.015, map_zoom = 10) {
+get_alpen_map <- function(sf_act_meas, tol_bbox = 0.015, map_zoom = 14) {
   bbox <- st_bbox(sf_act_meas)
 
   stamen_map <- get_stamenmap(

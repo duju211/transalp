@@ -11,7 +11,7 @@ extract_poi <- function(sf_act_meas) {
       poi_name = case_when(
         act_date == "2020-06-21" ~ "Albstadt",
         act_date == "2020-06-22" ~ "Winterthur",
-        act_date == "2020-06-23" ~ "Flüelen",
+        act_date == "2020-06-23" ~ "Flueelen",
         act_date == "2020-06-24" ~ "Andermatt",
         act_date == "2020-06-25" ~ "Lugano",
         TRUE ~ NA_character_)) |>

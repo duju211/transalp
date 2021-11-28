@@ -5,7 +5,6 @@ description: |
 author:
   - name: Julian During
 date: "`r Sys.Date()`"
-output: distill::distill_article
 repository_url: https://github.com/duju211/transalp
 creative_commons: CC BY
 ---
@@ -23,53 +22,30 @@ underlying package `transalp` for this post.
 
 # Data
 
-At first you have to install the package from github. Then you have to load it. 
-
-```{r eval=FALSE}
-remotes::install_github("duju211/transalp")
-
-library(transalp)
-```
-
 Load the other necessary libraries:
 
-```{r message=FALSE, warning=FALSE}
-library(tidyverse)
-library(patchwork)
-library(drake)
-library(here)
-library(fs)
+```{r message=FALSE, warning=FALSE, include=FALSE}
+source("libraries.R")
 ```
 
-```{r include=FALSE}
-fct_files <- dir_ls("R")
-
-fct_names <- path_file(fct_files) %>% 
-  path_ext_remove()
-
-walk2(fct_files, fct_names, ~ knitr::read_chunk(.x, labels = .y))
-
-loadd(gg_altitude_ridges)
-loadd(sf_act_meas)
-loadd(gg_alpen)
-loadd(gg_rides)
+```{r, code=read_lines("libraries.R"), eval=FALSE}
 ```
 
-The package includes the underlying data:
 
-```{r}
-df_act_meas_raw <- transalp::df_act_meas
+Load raw data from `rds` file `r tar_read(act_meas_path)`.
+
+```{r, code=read_lines("R/read_data.R")}
 ```
 
 ```{r, echo=FALSE}
-df_act_meas_raw
+tar_read(df_act_meas)
 ```
 
 # Preprocessing
 
 Look at the first function:
 
-```{r pre_process_meas}
+```{r pre_process_meas, code=read_lines("R/pre_process_meas.R")}
 ```
 
 The function does some basic preprocessing on the included activities:
@@ -77,33 +53,20 @@ The function does some basic preprocessing on the included activities:
 * Turn activity date into character (for easier plotting)
 * Normalize altitude and distance
 
-```{r eval=FALSE}
-df_act_meas <- pre_process_meas(df_act_meas_raw)
-```
-
 Nest the data frame by `id` and `act_date_chr`. Create a new `sf` column with
 the geospatial information of the activities:
 
-```{r convert_to_sf}
-```
-
-```{r, eval=FALSE}
-sf_act_meas <- convert_to_sf(df_act_meas)
+```{r convert_to_sf, code=read_lines("R/convert_to_sf.R")}
 ```
 
 ```{r, echo=FALSE}
-sf_act_meas
+tar_read(sf_act_meas)
 ```
-
 
 Extract the start point of every tour except for the last one. Extract the end
 point for this tour.
 
-```{r extract_poi}
-```
-
-```{r, eval=FALSE}
-df_poi <- extract_poi(sf_act_meas)
+```{r extract_poi, code=read_lines("R/extract_poi.R")}
 ```
 
 # Visualisation
@@ -112,21 +75,12 @@ df_poi <- extract_poi(sf_act_meas)
 
 Visualise the altitude data:
 
-```{r vis_altitude_ridge}
-```
-
-The function mainly applies the `ggridges::geom_ridgeline` function to the data.
-A form of visualisation that I've already used a lot. Its style is 
-reminiscent of the famous Joy Division album cover.
-
-```{r, eval=FALSE}
-gg_altitude_ridges <- vis_altitude_ridge(sf_act_meas)
+```{r vis_altitude, code=read_lines("R/vis_altitude.R")}
 ```
 
 ```{r, echo=FALSE}
-gg_altitude_ridges
+tar_read(gg_altitude)
 ```
-
 
 ## Spatial Data
 
@@ -134,15 +88,11 @@ Determine the map data for all the activities. Use the `ggmap::get_stamenmap`
 function to download the data. The bounding box is calculated from the
 `sf_act_meas` object.
 
-```{r get_alpen_map}
-```
-
-```{r eval=FALSE}
-gg_alpen <- get_alpen_map(sf_act_meas, tol_bbox = 0.1, map_zoom = 9)
+```{r get_alpen_map, code=read_lines("R/get_alpen_map.R")}
 ```
 
 ```{r, echo=FALSE}
-ggmap::ggmap(gg_alpen)
+ggmap::ggmap(tar_read(gg_alpen))
 ```
 
 
@@ -150,35 +100,21 @@ Plot the activity and the point of interest data onto the map. Use the
 `ggrepel` package to plot the labels of the points of interest. This avoids
 too much overplotting.
 
-```{r vis_ride}
-```
-
-```{r eval=FALSE}
-gg_rides <- vis_ride(sf_act_meas, gg_alpen_map, df_poi)
+```{r vis_ride, code=read_lines("R/vis_ride.R")}
 ```
 
 ```{r, echo=FALSE}
-gg_rides
+tar_read(gg_rides)
 ```
 
 ## Combine Visualisations
 
 Combine everything into one big plot using the `patchwork` package:
 
-```{r transalp_plot_final, message=FALSE, preview=TRUE}
-# extrafont::font_import()
-extrafont::loadfonts(device = "win")
-
-final_plot <- (gg_rides + gg_altitude_ridges) +
-      plot_annotation(
-        title = "Transalp 2020",
-        subtitle = "Albstadt - Lugano") &
-      theme(text = element_text(family = "Fira Code Retina"))
-
-final_plot
+```{r transalp_plot_final, code=read_lines("R/vis_transalp.R")}
 ```
 
-The `extrafont` package helps with using some fancy fonts. The `font_import`
-function has to be called once.
-Comment the function call in the above code chunk because of this.
+```{r, echo=FALSE}
+knitr::include_graphics(tar_read(png_gg_transalp))
+```
 
