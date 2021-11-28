@@ -1,19 +1,15 @@
-extract_poi <- function(sf_act_meas) {
-  sf_act_meas |>
-    as_tibble() |>
-    transmute(
-      id, first_row = map(act_data, ~ .x[1,]),
-      last_row = map(act_data, ~ .x[nrow(.x), ]),
-      decisive_row = if_else(id == "3669729902", last_row, first_row)) |>
-    unnest(decisive_row) |>
-    select(where(negate(is_list))) |>
-    mutate(
-      poi_name = case_when(
-        act_date == "2020-06-21" ~ "Albstadt",
-        act_date == "2020-06-22" ~ "Winterthur",
-        act_date == "2020-06-23" ~ "Flueelen",
-        act_date == "2020-06-24" ~ "Andermatt",
-        act_date == "2020-06-25" ~ "Lugano",
-        TRUE ~ NA_character_)) |>
-    rename(lon = lng)
+extract_poi <- function(df_act_meas_pro) {
+  tribble(
+    ~row_nr, ~poi_name, ~poi_type,
+    1, "Albstadt", "start_location",
+    16280, "Winterthur", "start_location",
+    32727, "Flueelen", "start_location",
+    70385, "Andermatt", "start_location",
+    90917, "Lugano", "end_location",
+    53677, "Furka Pass", "mountain",
+    61606, "Nufenen Pass", "mountain",
+    69335, "Gotthard Pass", "mountain",
+    43888, "Goescheneralp", "mountain",
+    74266, "Gotthard Pass", "mountain") |>
+    left_join(df_act_meas_pro, by = "row_nr")
 }

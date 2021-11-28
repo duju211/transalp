@@ -4,7 +4,8 @@ vis_ride <- function(sf_act_meas, gg_alpen, df_poi) {
       data = sf_act_meas, inherit.aes = FALSE,
       mapping = aes(color = act_date_chr), size = 1.2) +
     geom_label_repel(
-      data = df_poi, mapping = aes(label = poi_name), alpha = 0.6,
+      data = filter(df_poi, poi_type %in% c("start_location", "end_location")),
+      mapping = aes(x = lng, label = poi_name), alpha = 0.6,
       family = "Homemade Apple", size = 6.5) +
     labs(x = "Longitude", y = "Latitude")
 }
