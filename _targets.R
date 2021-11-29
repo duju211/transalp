@@ -19,7 +19,9 @@ list(
     gg_alpen,
     get_alpen_map(sf_act_meas, tol_bbox = tolerance_bbox, map_zoom = zoom_map)),
   tar_target(gg_rides, vis_ride(sf_act_meas, gg_alpen, df_poi)),
-  tar_target(gg_transalp, vis_transalp(gg_rides, gg_altitude)),
+  tar_target(
+    gg_transalp,
+    vis_transalp(gg_rides, gg_altitude, tour_start_date, tour_end_date)),
   tar_target(
     png_gg_transalp, save_gg_transalp(gg_transalp), format = "file"),
 
