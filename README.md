@@ -231,4 +231,6 @@ Combine everything into one big plot using the `patchwork` package:
         scale_fill_manual(values = ggpomological:::pomological_palette[-4])
     }
 
-![](README_files/figure-markdown_strict/trans_alp_2020.png)
+    knitr::include_graphics(tar_read(png_gg_transalp))
+
+<img src="README_files/figure-markdown_strict/trans_alp_2020.png" width="1600" />
