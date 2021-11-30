@@ -115,6 +115,6 @@ Combine everything into one big plot using the `patchwork` package:
 ```
 
 ```{r gg_transalp, echo=FALSE}
-knitr::include_graphics(path_file(tar_read(png_gg_transalp)))
+knitr::include_graphics(tar_read(png_gg_transalp))
 ```
 
