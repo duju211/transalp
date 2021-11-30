@@ -114,7 +114,4 @@ Combine everything into one big plot using the `patchwork` package:
 ```{r transalp_plot_final, code=read_lines("R/vis_transalp.R")}
 ```
 
-```{r gg_transalp, echo=FALSE}
-knitr::include_graphics(tar_read(png_gg_transalp))
-```
-
+![](`r tar_read(png_gg_transalp)`)
