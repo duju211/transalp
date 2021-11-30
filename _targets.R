@@ -27,5 +27,6 @@ list(
 
   tar_render(transalp_report, "trans_alp_2020.Rmd"),
   tar_render(
-    transalp_readme, "trans_alp_2020.Rmd", output_format = "md_document")
+    transalp_readme, "trans_alp_2020.Rmd", output_format = "md_document",
+    output_file = "README.md")
 )

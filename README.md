@@ -162,7 +162,7 @@ Visualise the altitude data:
     ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
     ## Zeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden
 
-![](trans_alp_2020_files/figure-markdown_strict/gg_altitude-1.png)
+![](README_files/figure-markdown_strict/gg_altitude-1.png)
 
 ## Spatial Data
 
@@ -182,7 +182,7 @@ is calculated from the `sf_act_meas` object.
         maptype = "terrain-background", zoom = map_zoom, color = "bw")
     }
 
-![](trans_alp_2020_files/figure-markdown_strict/gg_alpen-1.png)
+![](README_files/figure-markdown_strict/gg_alpen-1.png)
 
 Plot the activity and the point of interest data onto the map. Use the
 `ggrepel` package to plot the labels of the points of interest. This
@@ -207,7 +207,7 @@ avoids too much overplotting.
     ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
     ## Zeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden
 
-![](trans_alp_2020_files/figure-markdown_strict/gg_rides-1.png)
+![](README_files/figure-markdown_strict/gg_rides-1.png)
 
 ## Combine Visualisations
 
