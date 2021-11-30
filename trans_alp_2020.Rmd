@@ -78,7 +78,7 @@ Visualise the altitude data:
 ```{r vis_altitude, code=read_lines("R/vis_altitude.R")}
 ```
 
-```{r, echo=FALSE}
+```{r gg_altitude, echo=FALSE}
 tar_read(gg_altitude)
 ```
 
@@ -91,7 +91,7 @@ function to download the data. The bounding box is calculated from the
 ```{r get_alpen_map, code=read_lines("R/get_alpen_map.R")}
 ```
 
-```{r, echo=FALSE}
+```{r gg_alpen, echo=FALSE}
 ggmap::ggmap(tar_read(gg_alpen))
 ```
 
@@ -103,7 +103,7 @@ too much overplotting.
 ```{r vis_ride, code=read_lines("R/vis_ride.R")}
 ```
 
-```{r, echo=FALSE}
+```{r gg_rides, echo=FALSE}
 tar_read(gg_rides)
 ```
 
@@ -114,7 +114,7 @@ Combine everything into one big plot using the `patchwork` package:
 ```{r transalp_plot_final, code=read_lines("R/vis_transalp.R")}
 ```
 
-```{r, echo=FALSE}
+```{r gg_transalp, echo=FALSE}
 knitr::include_graphics(tar_read(png_gg_transalp))
 ```
 

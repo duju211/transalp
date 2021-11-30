@@ -25,5 +25,7 @@ list(
   tar_target(
     png_gg_transalp, save_gg_transalp(gg_transalp), format = "file"),
 
-  tar_render(transalp_report, "trans_alp_2020.Rmd")
+  tar_render(transalp_report, "trans_alp_2020.Rmd"),
+  tar_render(
+    transalp_readme, "trans_alp_2020.Rmd", output_format = "md_document")
 )
