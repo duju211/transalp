@@ -76,8 +76,9 @@ geospatial data in a list column:
 tar_read(sf_act_meas)
 ```
 
-Extract the start point of every tour except for the last one. Extract the end
-point for this tour.
+Define important points of interest on the route (based on their row number).
+Also include a small offset in a separate column. This will help to improve the
+plot later on:
 
 ```{r extract_poi, code=read_lines("R/extract_poi.R")}
 ```

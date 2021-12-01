@@ -111,8 +111,9 @@ the geospatial data in a list column:
     ## 4 3664650034 2020-06-24   <tibble [23,046 x 13]> Z (8.602206 46.63612 151~ <LIN~
     ## 5 3669729902 2020-06-25   <tibble [20,533 x 13]> Z (8.596761 46.63501 145~ <LIN~
 
-Extract the start point of every tour except for the last one. Extract
-the end point for this tour.
+Define important points of interest on the route (based on their row
+number). Also include a small offset in a separate column. This will
+help to improve the plot later on:
 
     extract_poi <- function(df_act_meas_pro) {
       tribble(

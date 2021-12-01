@@ -12,7 +12,7 @@ list(
   tar_target(df_act_meas, read_data(act_meas_path)),
   tar_target(df_act_meas_pro, pre_process_meas(df_act_meas)),
   tar_target(sf_act_meas, convert_to_sf(df_act_meas_pro)),
-  tar_target(df_poi, extract_poi(df_act_meas_pro)),
+  tar_target(df_poi, poi(df_act_meas_pro)),
   tar_target(gg_altitude, vis_altitude(df_act_meas_pro, df_poi)),
   tar_target(
     gg_alpen,

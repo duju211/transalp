@@ -1,4 +1,4 @@
-extract_poi <- function(df_act_meas_pro) {
+poi <- function(df_act_meas_pro) {
   tribble(
     ~row_nr, ~poi_name, ~poi_type,
     1, "Albstadt", "start_location",

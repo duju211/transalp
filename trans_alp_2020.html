@@ -260,7 +260,7 @@ conflict_prefer(&quot;filter&quot;, &quot;dplyr&quot;)</code></pre>
 ## 3 3659045033 2020-06-23   &lt;tibble [14,612 x 13]&gt; Z (8.625703 46.90152 447~ &lt;LIN~
 ## 4 3664650034 2020-06-24   &lt;tibble [23,046 x 13]&gt; Z (8.602206 46.63612 151~ &lt;LIN~
 ## 5 3669729902 2020-06-25   &lt;tibble [20,533 x 13]&gt; Z (8.596761 46.63501 145~ &lt;LIN~</code></pre>
-<p>Extract the start point of every tour except for the last one. Extract the end point for this tour.</p>
+<p>Define important points of interest on the route (based on their row number). Also include a small offset in a separate column. This will help to improve the plot later on:</p>
 <pre class="r"><code>extract_poi &lt;- function(df_act_meas_pro) {
   tribble(
     ~row_nr, ~poi_name, ~poi_type,
