@@ -1,9 +1,10 @@
-This summer I crossed the alps with my road bike. I’ve recorded the
-whole ride and as a nice memory, I would like to visualise this ride.
+In the summer of 2020 I crossed the alps with my road bike. I’ve
+recorded the whole ride and as a nice memory, I would like to visualise
+this ride.
 
 A short time ago I’ve discovered the awesome R package `targets`. The
 use of this package transformed the way I do my analysis and it helps me
-to make my post more reproducible.
+to make my work more reproducible.
 
 If you want to reproduce this analysis, you have to perform the
 following steps:
