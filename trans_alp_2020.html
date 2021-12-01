@@ -201,6 +201,7 @@ conflict_prefer(&quot;filter&quot;, &quot;dplyr&quot;)</code></pre>
 <pre class="r"><code>read_data &lt;- function(act_meas_path) {
   read_rds(act_meas_path)
 }</code></pre>
+<p>The data contains all the data of my 5 days on the bike. Every row is a measurement of one point in time on my trip:</p>
 <pre><code>## # A tibble: 90,917 x 13
 ##    id      moving velocity_smooth grade_smooth distance altitude heartrate  time
 ##    &lt;chr&gt;   &lt;lgl&gt;            &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt; &lt;int&gt;

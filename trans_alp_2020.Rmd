@@ -39,11 +39,13 @@ source("libraries.R")
 ```{r, code=read_lines("libraries.R"), eval=FALSE}
 ```
 
-
 Load raw data from `rds` file `r tar_read(act_meas_path)`.
 
 ```{r, code=read_lines("R/read_data.R")}
 ```
+
+The data contains all the data of my 5 days on the bike. Every row is a
+measurement of one point in time on my trip:
 
 ```{r, echo=FALSE}
 tar_read(df_act_meas)

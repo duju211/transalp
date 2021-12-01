@@ -40,6 +40,9 @@ Load raw data from `rds` file data/df\_act\_meas.rds.
       read_rds(act_meas_path)
     }
 
+The data contains all the data of my 5 days on the bike. Every row is a
+measurement of one point in time on my trip:
+
     ## # A tibble: 90,917 x 13
     ##    id      moving velocity_smooth grade_smooth distance altitude heartrate  time
     ##    <chr>   <lgl>            <dbl>        <dbl>    <dbl>    <dbl>     <int> <int>
