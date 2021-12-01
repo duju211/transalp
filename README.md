@@ -65,6 +65,8 @@ Do some basic preprocessing:
 
 -   Arrange measurements based on time
 -   Turn activity date into character (for easier plotting)
+-   Include a row number to make it easier to identify each record later
+    on
 -   Turn distance from meters into kilometers
 
 <!-- -->
