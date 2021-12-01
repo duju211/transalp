@@ -245,6 +245,7 @@ conflict_prefer(&quot;filter&quot;, &quot;dplyr&quot;)</code></pre>
       geom = map(line, st_sfc, crs = 4326)) |&gt;
     st_as_sf()
 }</code></pre>
+<p>Every activity is now represented by one row. The <code>geom</code> column holds the geospatial data in a list column:</p>
 <pre><code>## Simple feature collection with 5 features and 4 fields
 ## Geometry type: LINESTRING
 ## Dimension:     XYZ

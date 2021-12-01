@@ -93,6 +93,9 @@ with the geospatial information of the activities:
         st_as_sf()
     }
 
+Every activity is now represented by one row. The `geom` column holds
+the geospatial data in a list column:
+
     ## Simple feature collection with 5 features and 4 fields
     ## Geometry type: LINESTRING
     ## Dimension:     XYZ
