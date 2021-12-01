@@ -44,19 +44,20 @@ The input files contain all the data of my 5 days on the bike. Every row
 is a measurement of one point in time on my trip:
 
     ## # A tibble: 90,917 x 13
-    ##    id     moving velocity_smooth grade_smooth distance altitude heartrate  time cadence watts   lat   lng
-    ##    <chr>  <lgl>            <dbl>        <dbl>    <dbl>    <dbl>     <int> <int>   <int> <int> <dbl> <dbl>
-    ##  1 36697~ FALSE              0            0        0      1452.        NA     0      NA    NA  46.6  8.60
-    ##  2 36697~ FALSE              0            0        0.9    1446         NA   412      NA    NA  46.6  8.60
-    ##  3 36697~ TRUE               0          -44.6      4.6    1446         NA   413      NA    NA  46.6  8.60
-    ##  4 36697~ TRUE               0            1.4      8.4    1446         NA   414      NA    NA  46.6  8.60
-    ##  5 36697~ TRUE               0            2.8     12.1    1446.        NA   415      NA    NA  46.6  8.60
-    ##  6 36697~ TRUE               0            2.8     15.6    1446.        NA   416      NA    NA  46.6  8.60
-    ##  7 36697~ TRUE               0            1.4     19.1    1446.        NA   417      NA    NA  46.6  8.60
-    ##  8 36697~ TRUE               3.6          1.4     22.5    1446.        NA   418      NA    NA  46.6  8.60
-    ##  9 36697~ TRUE               3.5          0       26      1446.        NA   419      NA    NA  46.6  8.60
-    ## 10 36697~ TRUE               3.5          1.6     29.5    1446.        NA   420      NA    NA  46.6  8.60
-    ## # ... with 90,907 more rows, and 1 more variable: act_date <date>
+    ##    id      moving velocity_smooth grade_smooth distance altitude heartrate  time
+    ##    <chr>   <lgl>            <dbl>        <dbl>    <dbl>    <dbl>     <int> <int>
+    ##  1 366972~ FALSE              0            0        0      1452.        NA     0
+    ##  2 366972~ FALSE              0            0        0.9    1446         NA   412
+    ##  3 366972~ TRUE               0          -44.6      4.6    1446         NA   413
+    ##  4 366972~ TRUE               0            1.4      8.4    1446         NA   414
+    ##  5 366972~ TRUE               0            2.8     12.1    1446.        NA   415
+    ##  6 366972~ TRUE               0            2.8     15.6    1446.        NA   416
+    ##  7 366972~ TRUE               0            1.4     19.1    1446.        NA   417
+    ##  8 366972~ TRUE               3.6          1.4     22.5    1446.        NA   418
+    ##  9 366972~ TRUE               3.5          0       26      1446.        NA   419
+    ## 10 366972~ TRUE               3.5          1.6     29.5    1446.        NA   420
+    ## # ... with 90,907 more rows, and 5 more variables: cadence <int>, watts <int>,
+    ## #   lat <dbl>, lng <dbl>, act_date <date>
 
 # Preprocessing
 
@@ -102,13 +103,13 @@ the geospatial data in a list column:
     ## z_range:       zmin: 206.8 zmax: 2477.6
     ## CRS:           NA
     ## # A tibble: 5 x 5
-    ##   id         act_date_chr act_data                                                          line geom    
-    ##   <chr>      <chr>        <list>                                                    <LINESTRING> <list>  
-    ## 1 3650448726 2020-06-21   <tibble [16,279 x 13]> Z (9.021049 48.21307 750.2, 9.021047 48.21307 ~ <LINEST~
-    ## 2 3654245140 2020-06-22   <tibble [16,447 x 13]> Z (8.741265 47.49397 432, 8.741308 47.49395 43~ <LINEST~
-    ## 3 3659045033 2020-06-23   <tibble [14,612 x 13]> Z (8.625703 46.90152 447, 8.625694 46.9015 447~ <LINEST~
-    ## 4 3664650034 2020-06-24   <tibble [23,046 x 13]> Z (8.602206 46.63612 1510.2, 8.602228 46.63609~ <LINEST~
-    ## 5 3669729902 2020-06-25   <tibble [20,533 x 13]> Z (8.596761 46.63501 1451.6, 8.596328 46.63487~ <LINEST~
+    ##   id         act_date_chr act_data                                    line geom 
+    ##   <chr>      <chr>        <list>                              <LINESTRING> <lis>
+    ## 1 3650448726 2020-06-21   <tibble [16,279 x 13]> Z (9.021049 48.21307 750~ <LIN~
+    ## 2 3654245140 2020-06-22   <tibble [16,447 x 13]> Z (8.741265 47.49397 432~ <LIN~
+    ## 3 3659045033 2020-06-23   <tibble [14,612 x 13]> Z (8.625703 46.90152 447~ <LIN~
+    ## 4 3664650034 2020-06-24   <tibble [23,046 x 13]> Z (8.602206 46.63612 151~ <LIN~
+    ## 5 3669729902 2020-06-25   <tibble [20,533 x 13]> Z (8.596761 46.63501 145~ <LIN~
 
 Define important points of interest on the route (based on their row
 number). Also include a small offset in a separate column. This will
@@ -165,13 +166,7 @@ Visualise the altitude data:
           breaks = breaks_width(10), expand = expansion(mult = c(0.01, .01)))
     }
 
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : Zeichensatzfamilie in der
-    ## Windows Zeichensatzdatenbank nicht gefunden
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : Zeichensatzfamilie in der
-    ## Windows Zeichensatzdatenbank nicht gefunden
-
-![](README_files/figure-markdown_strict/gg_altitude-1.png)
+<img src="README_files/gg_altitude.png" width="2100" />
 
 ## Spatial Data
 
@@ -213,8 +208,8 @@ avoids too much overplotting.
         labs(x = "Longitude", y = "Latitude")
     }
 
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : Zeichensatzfamilie in der
-    ## Windows Zeichensatzdatenbank nicht gefunden
+    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## Zeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden
 
 ![](README_files/figure-markdown_strict/gg_rides-1.png)
 
