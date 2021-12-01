@@ -1,16 +1,23 @@
 This summer I crossed the alps with my road bike. I’ve recorded the
 whole ride and as a nice memory, I would like to visualise this ride.
 
-A short time ago I’ve discovered the awesome R package `drake`. The use
-of this package transformed the way I do my analysis and it helps me to
-make my post more reproducible. The following [blog
-post](https://milesmcbain.xyz/the-drake-post/) describes the underlying
-workflow, after which I’ve developed the underlying package `transalp`
-for this post.
+A short time ago I’ve discovered the awesome R package `targets`. The
+use of this package transformed the way I do my analysis and it helps me
+to make my post more reproducible.
+
+If you want to reproduce this analysis, you have to perform the
+following steps:
+
+-   Install at least R 4.1.0 (use of the new base pipe)
+-   Clone the [repository](https://github.com/duju211/transalp)
+-   Install the packages in the `libraries.R` file
+-   Run targets pipeline with `targets::tar_make()`
 
 # Data
 
-Load the other necessary libraries:
+I will describe the most important steps of the analysis in more detail.
+
+At first, load the necessary libraries:
 
     library(ggpomological)
     library(tarchetypes)

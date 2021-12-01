@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2021-12-01" />
 
 <title>Getting Over It</title>
 
@@ -166,16 +166,24 @@ pre code {
 
 <h1 class="title toc-ignore">Getting Over It</h1>
 <h4 class="author">Julian During</h4>
-<h4 class="date">2021-11-30</h4>
+<h4 class="date">2021-12-01</h4>
 
 </div>
 
 
 <p>This summer I crossed the alps with my road bike. I’ve recorded the whole ride and as a nice memory, I would like to visualise this ride.</p>
-<p>A short time ago I’ve discovered the awesome R package <code>drake</code>. The use of this package transformed the way I do my analysis and it helps me to make my post more reproducible. The following <a href="https://milesmcbain.xyz/the-drake-post/">blog post</a> describes the underlying workflow, after which I’ve developed the underlying package <code>transalp</code> for this post.</p>
+<p>A short time ago I’ve discovered the awesome R package <code>targets</code>. The use of this package transformed the way I do my analysis and it helps me to make my post more reproducible.</p>
+<p>If you want to reproduce this analysis, you have to perform the following steps:</p>
+<ul>
+<li>Install at least R 4.1.0 (use of the new base pipe)</li>
+<li>Clone the <a href="https://github.com/duju211/transalp">repository</a></li>
+<li>Install the packages in the <code>libraries.R</code> file</li>
+<li>Run targets pipeline with <code>targets::tar_make()</code></li>
+</ul>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>Load the other necessary libraries:</p>
+<p>I will describe the most important steps of the analysis in more detail.</p>
+<p>At first, load the necessary libraries:</p>
 <pre class="r"><code>library(ggpomological)
 library(tarchetypes)
 library(conflicted)
