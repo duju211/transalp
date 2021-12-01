@@ -26,8 +26,6 @@ At first, load the necessary libraries:
     library(patchwork)
     library(tidyverse)
     library(lubridate)
-    library(ggridges)
-    library(ggrepel)
     library(targets)
     library(scales)
     library(ggmap)

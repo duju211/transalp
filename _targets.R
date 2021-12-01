@@ -14,7 +14,6 @@ list(
   tar_target(sf_act_meas, convert_to_sf(df_act_meas_pro)),
   tar_target(df_poi, extract_poi(df_act_meas_pro)),
   tar_target(gg_altitude, vis_altitude(df_act_meas_pro, df_poi)),
-  tar_target(gg_altitude_ridges, vis_altitude_ridge(sf_act_meas)),
   tar_target(
     gg_alpen,
     get_alpen_map(sf_act_meas, tol_bbox = tolerance_bbox, map_zoom = zoom_map)),
