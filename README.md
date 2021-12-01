@@ -40,8 +40,8 @@ Load raw data from `rds` file data/df\_act\_meas.rds.
       read_rds(act_meas_path)
     }
 
-The data contains all the data of my 5 days on the bike. Every row is a
-measurement of one point in time on my trip:
+The input files contain all the data of my 5 days on the bike. Every row
+is a measurement of one point in time on my trip:
 
     ## # A tibble: 90,917 x 13
     ##    id      moving velocity_smooth grade_smooth distance altitude heartrate  time
@@ -61,26 +61,21 @@ measurement of one point in time on my trip:
 
 # Preprocessing
 
-Look at the first function:
+Do some basic preprocessing:
+
+-   Arrange measurements based on time
+-   Turn activity date into character (for easier plotting)
+-   Turn distance from meters into kilometers
+
+<!-- -->
 
     pre_process_meas <- function(df_act_meas) {
       df_act_meas |>
         arrange(act_date, time) |>
         mutate(
           act_date_chr = as.character(act_date),
-          altitude_norm = altitude / max(altitude),
-          row_nr = row_number()) |>
-        group_by(id) |>
-        mutate(
-          distance = distance / 1000,
-          distance_norm = distance / max(distance)) |>
-        ungroup()
+          row_nr = row_number(), distance = distance / 1000)
     }
-
-The function does some basic preprocessing on the included activities:
-
--   Turn activity date into character (for easier plotting)
--   Normalize altitude and distance
 
 Nest the data frame by `id` and `act_date_chr`. Create a new `sf` column
 with the geospatial information of the activities:
@@ -105,11 +100,11 @@ with the geospatial information of the activities:
     ## # A tibble: 5 x 5
     ##   id         act_date_chr act_data                                    line geom 
     ##   <chr>      <chr>        <list>                              <LINESTRING> <lis>
-    ## 1 3650448726 2020-06-21   <tibble [16,279 x 15]> Z (9.021049 48.21307 750~ <LIN~
-    ## 2 3654245140 2020-06-22   <tibble [16,447 x 15]> Z (8.741265 47.49397 432~ <LIN~
-    ## 3 3659045033 2020-06-23   <tibble [14,612 x 15]> Z (8.625703 46.90152 447~ <LIN~
-    ## 4 3664650034 2020-06-24   <tibble [23,046 x 15]> Z (8.602206 46.63612 151~ <LIN~
-    ## 5 3669729902 2020-06-25   <tibble [20,533 x 15]> Z (8.596761 46.63501 145~ <LIN~
+    ## 1 3650448726 2020-06-21   <tibble [16,279 x 13]> Z (9.021049 48.21307 750~ <LIN~
+    ## 2 3654245140 2020-06-22   <tibble [16,447 x 13]> Z (8.741265 47.49397 432~ <LIN~
+    ## 3 3659045033 2020-06-23   <tibble [14,612 x 13]> Z (8.625703 46.90152 447~ <LIN~
+    ## 4 3664650034 2020-06-24   <tibble [23,046 x 13]> Z (8.602206 46.63612 151~ <LIN~
+    ## 5 3669729902 2020-06-25   <tibble [20,533 x 13]> Z (8.596761 46.63501 145~ <LIN~
 
 Extract the start point of every tour except for the last one. Extract
 the end point for this tour.

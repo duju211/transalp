@@ -44,7 +44,7 @@ Load raw data from `rds` file `r tar_read(act_meas_path)`.
 ```{r, code=read_lines("R/read_data.R")}
 ```
 
-The data contains all the data of my 5 days on the bike. Every row is a
+The input files contain all the data of my 5 days on the bike. Every row is a
 measurement of one point in time on my trip:
 
 ```{r, echo=FALSE}
@@ -53,15 +53,14 @@ tar_read(df_act_meas)
 
 # Preprocessing
 
-Look at the first function:
+Do some basic preprocessing:
+
+* Arrange measurements based on time
+* Turn activity date into character (for easier plotting)
+* Turn distance from meters into kilometers
 
 ```{r pre_process_meas, code=read_lines("R/pre_process_meas.R")}
 ```
-
-The function does some basic preprocessing on the included activities:
-
-* Turn activity date into character (for easier plotting)
-* Normalize altitude and distance
 
 Nest the data frame by `id` and `act_date_chr`. Create a new `sf` column with
 the geospatial information of the activities:
