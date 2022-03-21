@@ -13,20 +13,19 @@ list(
   tar_target(df_act_meas_pro, pre_process_meas(df_act_meas)),
   tar_target(sf_act_meas, convert_to_sf(df_act_meas_pro)),
   tar_target(df_poi, poi(df_act_meas_pro)),
-  tar_target(gg_altitude, vis_altitude(df_act_meas_pro, df_poi)),
-  tar_target(png_gg_altitude, gg_altitude_png(gg_altitude), format = "file"),
+  tar_target(gg_altitude, vis_altitude(df_act_meas_pro)),
+  # tar_target(png_gg_altitude, gg_altitude_png(gg_altitude), format = "file"),
   tar_target(
     gg_alpen,
     get_alpen_map(sf_act_meas, tol_bbox = tolerance_bbox, map_zoom = zoom_map)),
-  tar_target(gg_rides, vis_ride(sf_act_meas, gg_alpen, df_poi)),
+  tar_target(gg_rides, vis_ride(sf_act_meas, gg_alpen)),
   tar_target(
-    gg_transalp,
-    vis_transalp(gg_rides, gg_altitude, tour_start_date, tour_end_date)),
-  tar_target(
-    png_gg_transalp, save_gg_transalp(gg_transalp), format = "file"),
+    png_transalp, vis_transalp(
+      gg_rides, gg_altitude, tour_start_date, tour_end_date, df_poi),
+    format = "file"),
 
-  tar_render(transalp_report, "trans_alp_2020.Rmd"),
-  tar_render(
-    transalp_readme, "trans_alp_2020.Rmd", output_format = "md_document",
-    output_file = "README.md")
+  tar_render(transalp_report, "trans_alp_2020.Rmd")
+  # tar_render(
+  #   transalp_readme, "trans_alp_2020.Rmd", output_format = "md_document",
+  #   output_file = "README.md")
 )
