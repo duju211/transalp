@@ -10,10 +10,11 @@ vis_ride <- function(sf_act_meas_lines, sf_act_meas_points, raster_alpen) {
     geom_label_repel(
       aes(x = lng_poi, y = lat_poi, label = poi_name),
       size = 2.5, fill = alpha(c("white"), 0.5)) +
-    #scale_x_continuous(breaks = breaks_width(0.3))
     labs(
       x = "Longitude", y = "Latitude") +
-    theme(legend.position = "none", panel.grid.major = element_blank())
+    theme(
+      legend.position = "none", panel.grid.major = element_blank(),
+      axis.text.x = element_text(angle = 90))
 
   gg_altitude <- sf_act_meas_points |>
     filter(moving) |>
