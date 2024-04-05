@@ -10,5 +10,7 @@ meas <- function(meas_file) {
 
   df_meas_raw |>
     left_join(df_distance_max, by = join_by(id)) |>
-    mutate(distance_cum = distance + distance_max)
+    group_by(id) |>
+    mutate(distance_cum = distance + distance_max) |>
+    ungroup()
 }
