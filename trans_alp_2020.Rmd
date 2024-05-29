@@ -11,7 +11,6 @@ base_url: https://www.datannery.com/posts/transalp/
 creative_commons: CC BY
 params:
   interactive: TRUE
-  gg_ride: "transalp.png"
 editor_options: 
   chunk_output_type: console
 ---
@@ -104,19 +103,20 @@ Read raster data:
 # Visualisation
 
 ```{r}
-#| file="R/vis_ride.R"
+#| file="R/vis_transalp.R"
 ```
 
 ```{r gg_ride}
-#| code=df_manifest$command[df_manifest$name == "gg_ride"]
+#| code=df_manifest$command[df_manifest$name == "gg_transalp"]
+```
+
+```{r, eval=TRUE, include=FALSE}
+if (params$interactive)
+  tar_load(gg_transalp)
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
-if (params$interactive) {
-  knitr::include_graphics(params$gg_ride)
-} else {
-  knitr::include_graphics(gg_ride)
-}
+knitr::include_graphics(gg_transalp)
 ```
 
 What a ride it has been! I'm always thinking back to this experience.
